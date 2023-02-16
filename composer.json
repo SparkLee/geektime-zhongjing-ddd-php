@@ -1,8 +1,8 @@
 {
-    "name": "laravel/laravel",
+    "name": "sparklee/geektime-zhongjing-ddd-php",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "description": "《手把手教你落地 DDD》@极客时间@钟敬老师-练习项目",
+    "keywords": ["DDD", "laravel", "doctrine"],
     "license": "MIT",
     "require": {
         "php": "^8.0",
