@@ -1,6 +1,6 @@
 <?php
 
-namespace Unjuanable\Domain\OrgMng;
+namespace App\Domain\OrgMng;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping\Column;
@@ -13,4 +13,9 @@ class Emp
 {
     #[Id, GeneratedValue, Column(type: Types::INTEGER)]
     private int|null $id = null;
+
+    public function getId()
+    {
+        return $this->id;
+    }
 }

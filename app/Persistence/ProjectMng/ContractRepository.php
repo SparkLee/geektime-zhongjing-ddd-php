@@ -1,8 +1,7 @@
 <?php
 
-namespace Unjuanable\Persistence\ProjectMng;
+namespace App\Persistence\ProjectMng;
 
 class ContractRepository
 {
-
 }

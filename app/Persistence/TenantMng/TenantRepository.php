@@ -1,8 +1,7 @@
 <?php
 
-namespace Unjuanable\Persistence\TenantMng;
+namespace App\Persistence\TenantMng;
 
 class TenantRepository
 {
-
 }

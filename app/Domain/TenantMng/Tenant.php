@@ -1,8 +1,7 @@
 <?php
 
-namespace Unjuanable\Domain\TenantMng;
+namespace App\Domain\TenantMng;
 
 class Tenant
 {
-
 }

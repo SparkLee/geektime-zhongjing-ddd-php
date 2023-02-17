@@ -2,7 +2,11 @@
     "name": "sparklee/geektime-zhongjing-ddd-php",
     "type": "project",
     "description": "《手把手教你落地 DDD》@极客时间@钟敬老师-练习项目",
-    "keywords": ["DDD", "laravel", "doctrine"],
+    "keywords": [
+        "DDD",
+        "laravel",
+        "doctrine"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.0",
@@ -23,7 +27,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Unjuanable\\": "app/",
+            "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }

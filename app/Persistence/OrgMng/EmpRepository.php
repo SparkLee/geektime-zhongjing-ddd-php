@@ -1,8 +1,7 @@
 <?php
 
-namespace Unjuanable\Persistence\OrgMng;
+namespace App\Persistence\OrgMng;
 
 class EmpRepository
 {
-
 }

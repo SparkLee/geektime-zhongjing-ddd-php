@@ -1,8 +1,7 @@
 <?php
 
-namespace Unjuanable\Domain\ProjectMng;
+namespace App\Domain\ProjectMng;
 
 class ClientMng
 {
-
 }

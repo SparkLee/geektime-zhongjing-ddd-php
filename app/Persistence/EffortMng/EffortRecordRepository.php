@@ -1,8 +1,7 @@
 <?php
 
-namespace Unjuanable\Persistence\EffortMng;
+namespace App\Persistence\EffortMng;
 
 class EffortRecordRepository
 {
-
 }

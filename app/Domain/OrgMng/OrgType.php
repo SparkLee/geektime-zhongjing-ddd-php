@@ -1,8 +1,7 @@
 <?php
 
-namespace Unjuanable\Domain\OrgMng;
+namespace App\Domain\OrgMng;
 
 class OrgType
 {
-
 }

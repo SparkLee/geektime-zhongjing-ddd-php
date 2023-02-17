@@ -1,8 +1,7 @@
 <?php
 
-namespace Unjuanable\Application\OrgMng;
+namespace App\Application\OrgMng;
 
 class OrgService
 {
-
 }

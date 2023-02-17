@@ -1,6 +1,6 @@
 <?php
 
-namespace Unjuanable\Domain\EffortMng;
+namespace App\Domain\EffortMng;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping\Column;

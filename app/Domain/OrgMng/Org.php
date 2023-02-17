@@ -1,6 +1,6 @@
 <?php
 
-namespace Unjuanable\Domain\OrgMng;
+namespace App\Domain\OrgMng;
 
 use DateTime;
 use Doctrine\DBAL\Types\Types;
