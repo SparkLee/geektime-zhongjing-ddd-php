@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use LaravelDoctrine\ORM\Facades\EntityManager;
 use Tests\TestCase;
-use App\Domain\OrgMng\Emp;
+use App\Domain\OrgMng\Emp\Emp;
 
 use function PHPUnit\Framework\assertSame;
 

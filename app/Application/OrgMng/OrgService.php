@@ -3,8 +3,8 @@
 namespace App\Application\OrgMng;
 
 use App\Domain\OrgMng\DTO\OrgDomainDTO;
-use App\Domain\OrgMng\Org;
-use App\Domain\OrgMng\OrgRepository;
+use App\Domain\OrgMng\Org\Org;
+use App\Domain\OrgMng\Org\OrgRepository;
 
 class OrgService
 {

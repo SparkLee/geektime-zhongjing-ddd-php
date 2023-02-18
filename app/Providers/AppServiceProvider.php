@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Domain\OrgMng\Org;
-use App\Domain\OrgMng\OrgRepository;
+use App\Domain\OrgMng\Org\Org;
+use App\Domain\OrgMng\Org\OrgRepository;
 use App\Persistence\OrgMng\OrgRepositoryDoctrine;
 use Illuminate\Support\ServiceProvider;
 

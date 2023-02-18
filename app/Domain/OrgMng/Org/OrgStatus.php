@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\OrgMng;
+namespace App\Domain\OrgMng\Org;
 
 class OrgStatus
 {

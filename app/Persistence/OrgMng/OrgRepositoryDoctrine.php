@@ -2,8 +2,8 @@
 
 namespace App\Persistence\OrgMng;
 
-use App\Domain\OrgMng\Org;
-use App\Domain\OrgMng\OrgRepository;
+use App\Domain\OrgMng\Org\Org;
+use App\Domain\OrgMng\Org\OrgRepository;
 use Doctrine\ORM\EntityRepository;
 use LaravelDoctrine\ORM\Facades\EntityManager;
 

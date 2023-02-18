@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Domain\OrgMng;
+namespace App\Domain\OrgMng\Org;
 
 use App\Domain\OrgMng\DTO\OrgDomainDTO;
-use App\Domain\OrgMng\OrgStatus;
+use App\Domain\OrgMng\Org\OrgStatus;
 use Carbon\Carbon;
 use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
