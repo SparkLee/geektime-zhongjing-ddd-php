@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\OrgMng\DTO;
+namespace App\Domain\OrgMng\Org\DTO;
 
 class OrgDomainDTO
 {
@@ -33,7 +33,7 @@ class OrgDomainDTO
 	}
 
 	/**
-	 * @param int $tenantId 
+	 * @param int $tenantId
 	 * @return self
 	 */
 	public function tenantId(int $tenantId): self
@@ -43,7 +43,7 @@ class OrgDomainDTO
 	}
 
 	/**
-	 * @param int $superiorId 
+	 * @param int $superiorId
 	 * @return self
 	 */
 	public function superiorId(int $superiorId): self
@@ -53,7 +53,7 @@ class OrgDomainDTO
 	}
 
 	/**
-	 * @param string $orgTypeCode 
+	 * @param string $orgTypeCode
 	 * @return self
 	 */
 	public function orgTypeCode(string $orgTypeCode): self

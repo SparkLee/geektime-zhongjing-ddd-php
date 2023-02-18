@@ -2,7 +2,7 @@
 
 namespace App\Application\OrgMng;
 
-use App\Domain\OrgMng\DTO\OrgDomainDTO;
+use App\Domain\OrgMng\Org\DTO\OrgDomainDTO;
 use App\Domain\OrgMng\Org\Org;
 use App\Domain\OrgMng\Org\OrgRepository;
 

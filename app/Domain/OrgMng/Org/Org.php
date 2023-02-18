@@ -2,7 +2,7 @@
 
 namespace App\Domain\OrgMng\Org;
 
-use App\Domain\OrgMng\DTO\OrgDomainDTO;
+use App\Domain\OrgMng\Org\DTO\OrgDomainDTO;
 use App\Domain\OrgMng\Org\OrgStatus;
 use Carbon\Carbon;
 use DateTimeImmutable;
