@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\EffortMng;
+namespace App\Http\Controllers\Api\EffortMng;
 
 use App\Http\Controllers\Controller;
 

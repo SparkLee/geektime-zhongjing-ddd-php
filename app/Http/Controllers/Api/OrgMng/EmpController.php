@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\OrgMng;
+namespace App\Http\Controllers\Api\OrgMng;
 
 use App\Http\Controllers\Controller;
 

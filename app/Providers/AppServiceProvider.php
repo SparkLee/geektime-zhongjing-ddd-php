@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Domain\OrgMng\Org;
+use App\Domain\OrgMng\OrgRepository;
+use App\Persistence\OrgMng\OrgRepositoryDoctrine;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +16,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(OrgRepository::class, function ($app) {
+            return new OrgRepositoryDoctrine($app['em'], $app['em']->getClassMetaData(Org::class));
+        });
     }
 
     /**
