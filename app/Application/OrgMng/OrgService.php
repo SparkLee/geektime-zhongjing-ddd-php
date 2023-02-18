@@ -17,11 +17,11 @@ class OrgService
 
     public function addOrg(OrgDto $orgDto, int $userId)
     {
-        $orgDomainDTO = new OrgDomainDTO(
-            $orgDto->getTenantId(),
-            $orgDto->getSuperiorId(),
-            $orgDto->getOrgTypeCode()
-        );
+        $orgDomainDTO = (new OrgDomainDTO())
+            ->tenantId($orgDto->getTenantId())
+            ->superiorId($orgDto->getSuperiorId())
+            ->orgTypeCode($orgDto->getOrgTypeCode());
+
         return $this->orgRepository->save(Org::fromOrgDomainDto($orgDomainDTO));
     }
 }
