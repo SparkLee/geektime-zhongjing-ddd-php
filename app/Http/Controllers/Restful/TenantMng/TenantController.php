@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\TenantMng;
+namespace App\Http\Controllers\Restful\TenantMng;
 
 use App\Http\Controllers\Controller;
 

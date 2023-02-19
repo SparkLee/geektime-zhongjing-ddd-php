@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\EffortMng;
+namespace App\Http\Controllers\Restful\EffortMng;
 
 use App\Http\Controllers\Controller;
 

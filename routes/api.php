@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\OrgMng\OrgController;
+use App\Http\Controllers\Restful\OrgMng\OrgController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/organizations', [OrgController::class, 'addOrg']);
+Route::put('/organizations/{id}/basic_info', [OrgController::class, 'updateOrgBasicInfo']);

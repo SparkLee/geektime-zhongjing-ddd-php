@@ -15,4 +15,13 @@ class OrgControllerTest extends TestCase
         $response->assertStatus(200);
         $response->assertContent('"success"');
     }
+
+    public function test_should_update_org_basic_info()
+    {
+        $response = $this->put('/api/organizations/1/basic_info', [
+            'tenantId' => 1
+        ]);
+
+        $response->assertStatus(200);
+    }
 }

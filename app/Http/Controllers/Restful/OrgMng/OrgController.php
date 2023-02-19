@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\OrgMng;
+namespace App\Http\Controllers\Restful\OrgMng;
 
 use App\Application\OrgMng\OrgDto;
 use App\Application\OrgMng\OrgService;
@@ -22,6 +22,11 @@ class OrgController extends Controller
 
         $this->orgService->addOrg($orgDto, 1);
 
+        return response()->json('success');
+    }
+
+    public function updateOrgBasicInfo()
+    {
         return response()->json('success');
     }
 }
