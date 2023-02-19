@@ -3,7 +3,6 @@
 namespace App\Domain\OrgMng\Org;
 
 use App\Domain\OrgMng\Org\DTO\OrgDomainDTO;
-use App\Domain\OrgMng\Org\OrgStatus;
 use Carbon\Carbon;
 use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
@@ -54,12 +53,22 @@ class Org
         $this->lastUpdatedAt = Carbon::now()->toDateTimeImmutable();
     }
 
-    public static function fromOrgDomainDto(OrgDomainDTO $orgDomainDto): static
+    public static function fromOrgDomainDTO(OrgDomainDTO $orgDomainDto): static
     {
         $org = new static;
         $org->tenantId = $orgDomainDto->getTenantId();
         $org->superiorId = $orgDomainDto->getSuperiorId();
         $org->orgTypeCode = $orgDomainDto->getOrgTypeCode();
         return $org;
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getTenantId(): int
+    {
+        return $this->tenantId;
     }
 }

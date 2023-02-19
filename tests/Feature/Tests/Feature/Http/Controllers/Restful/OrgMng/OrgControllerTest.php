@@ -9,11 +9,10 @@ class OrgControllerTest extends TestCase
     public function test_should_add_org()
     {
         $response = $this->post('/api/organizations', [
-            'tenant_id' => 1,
+            'tenantId' => 66,
         ]);
-
         $response->assertStatus(200);
-        $response->assertContent('"success"');
+        $response->assertJsonStructure(['id', 'tenantId']);
     }
 
     public function test_should_update_org_basic_info()

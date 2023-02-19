@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Application\OrgMng;
+namespace App\Application\OrgMng\OrgService;
 
 use Illuminate\Http\Request;
 
-class OrgDto
+class CreateOrgRequest
 {
     private int $id;
     private int $tenantId;
@@ -18,12 +18,17 @@ class OrgDto
     private string $lastUpdatedAt;
     private int $lastUpdatedBy;
 
+    private function __construct()
+    {
+
+    }
+
     public static function fromRequest(Request $request): static
     {
         $dto = new static;
-        $dto->tenantId = $request->integer('tenant_id');
-        $dto->superiorId = $request->integer('superior_id');
-        $dto->orgTypeCode = $request->integer('org_type_code');
+        $dto->tenantId = $request->integer('tenantId');
+        $dto->superiorId = $request->integer('superiorId');
+        $dto->orgTypeCode = $request->integer('orgTypeCode');
         return $dto;
     }
 

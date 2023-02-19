@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Restful\OrgMng;
 
-use App\Application\OrgMng\OrgDto;
-use App\Application\OrgMng\OrgService;
+use App\Application\OrgMng\OrgService\CreateOrgRequest;
+use App\Application\OrgMng\OrgService\OrgService;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class OrgController extends Controller
@@ -16,13 +17,11 @@ class OrgController extends Controller
         $this->orgService = $orgService;
     }
 
-    public function addOrg(Request $request)
+    public function addOrg(Request $request): JsonResponse
     {
-        $orgDto = OrgDto::fromRequest($request);
-
-        $this->orgService->addOrg($orgDto, 1);
-
-        return response()->json('success');
+        $createOrgRequest = CreateOrgRequest::fromRequest($request);
+        $orgResponse = $this->orgService->addOrg($createOrgRequest, 1);
+        return response()->json($orgResponse->toArray());
     }
 
     public function updateOrgBasicInfo()
