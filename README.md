@@ -2,5 +2,5 @@
 
 ### 执行单元测试
 ```shell
-$ docker build -t ddd . -f docker/Dockerfile && docker run --rm ddd echo "done."
+$ docker build -t ddd . -f docker/Dockerfile && docker run --rm ddd composer test
 ```
