@@ -1,4 +1,4 @@
-add<?php
+<?php
 
 namespace App\Domain\OrgMng\Org\Validator;
 
