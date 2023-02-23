@@ -10,9 +10,14 @@ class OrgControllerTest extends TestCase
     {
         $response = $this->post('/api/organizations', [
             'tenantId' => 66,
+            'name' => 'foo',
         ]);
         $response->assertStatus(200);
         $response->assertJsonStructure(['id', 'tenantId']);
+        $response->assertJson([
+            'tenantId' => 66,
+            'name' => 'foo',
+        ]);
     }
 
     public function test_should_update_org_basic_info()

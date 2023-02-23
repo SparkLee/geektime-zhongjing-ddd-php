@@ -29,6 +29,7 @@ class CreateOrgRequest
         $dto->tenantId = $request->integer('tenantId');
         $dto->superiorId = $request->integer('superiorId');
         $dto->orgTypeCode = $request->integer('orgTypeCode');
+        $dto->name = $request->str('name');
         return $dto;
     }
 
@@ -54,5 +55,13 @@ class CreateOrgRequest
     public function getOrgTypeCode(): string
     {
         return $this->orgTypeCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
     }
 }

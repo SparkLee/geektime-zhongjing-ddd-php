@@ -30,7 +30,8 @@ class OrgService
         $orgDomainDTO = (new OrgDomainDTO())
             ->tenantId($request->getTenantId())
             ->superiorId($request->getSuperiorId())
-            ->orgTypeCode($request->getOrgTypeCode());
+            ->orgTypeCode($request->getOrgTypeCode())
+            ->name($request->getName());
 
         return $this->orgBuilder
             ->orgDomainDTO($orgDomainDTO)
