@@ -14,7 +14,7 @@ COPY ./docker/.env.testing /app/.env
 RUN composer install
 
 # 创建数据库表结构
-RUN composer migrate
+RUN composer doctrine-schema-create
 
 # 执行测试
 RUN composer run test
