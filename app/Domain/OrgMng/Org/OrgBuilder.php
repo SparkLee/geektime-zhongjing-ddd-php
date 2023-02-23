@@ -10,11 +10,17 @@ class OrgBuilder
     private OrgDomainDTO $orgDomainDTO;
     private OrgNameValidator $orgNameValidator;
 
-    public function orgDomainDTO(OrgDomainDTO     $orgDomainDTO,
-                                 OrgNameValidator $orgNameValidator): self
+    /**
+     * @param OrgNameValidator $orgNameValidator
+     */
+    public function __construct(OrgNameValidator $orgNameValidator)
+    {
+        $this->orgNameValidator = $orgNameValidator;
+    }
+
+    public function orgDomainDTO(OrgDomainDTO $orgDomainDTO): self
     {
         $this->orgDomainDTO = $orgDomainDTO;
-        $this->orgNameValidator = $orgNameValidator;
         return $this;
     }
 
