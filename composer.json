@@ -39,7 +39,16 @@
     },
     "scripts": {
         "test": "@php vendor/bin/phpunit",
-        "migrate": [
+        "doctrine-schema-create": [
+            "@php artisan doctrine:schema:create"
+        ],
+        "doctrine-schema-update": [
+            "@php artisan doctrine:clear:metadata:cache",
+            "@php artisan doctrine:schema:update"
+        ],
+        "doctrine-schema-recreate": [
+            "@php artisan doctrine:clear:metadata:cache",
+            "@php artisan doctrine:schema:drop --force",
             "@php artisan doctrine:schema:create"
         ],
         "post-autoload-dump": [

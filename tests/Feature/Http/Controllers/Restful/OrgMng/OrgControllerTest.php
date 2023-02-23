@@ -2,20 +2,32 @@
 
 namespace Tests\Feature\Http\Controllers\Restful\OrgMng;
 
+use App\Domain\TenantMng\Tenant;
+use App\Domain\TenantMng\TenantStatus;
+use LaravelDoctrine\ORM\Facades\EntityManager;
 use Tests\TestCase;
 
 class OrgControllerTest extends TestCase
 {
     public function test_should_add_org()
     {
+        // Given
+        $tenant = (new Tenant())
+            ->setStatus(TenantStatus::Effective->value);
+        EntityManager::persist($tenant);
+        EntityManager::flush();
+
+        // When
         $response = $this->post('/api/organizations', [
-            'tenantId' => 66,
+            'tenantId' => $tenant->getId(),
             'name' => 'foo',
         ]);
+
+        // Then
         $response->assertStatus(200);
         $response->assertJsonStructure(['id', 'tenantId']);
         $response->assertJson([
-            'tenantId' => 66,
+            'tenantId' => $tenant->getId(),
             'name' => 'foo',
         ]);
     }
