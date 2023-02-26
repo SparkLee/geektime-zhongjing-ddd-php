@@ -6,5 +6,5 @@ use App\Domain\TenantMng\Tenant;
 
 interface OrgTypeRepository
 {
-    public function existsByCodeAndStatus(Tenant|int $tenant, string $code, OrgTypeStatus $orgTypeStatus): bool;
+    public function existsByCodeAndStatus(Tenant|int $tenant, string $code, OrgTypeStatus|int $orgTypeStatus): bool;
 }

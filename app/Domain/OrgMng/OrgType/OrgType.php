@@ -21,16 +21,16 @@ class OrgType
     #[Column(type: Types::STRING, length: 10)]
     private string $name;
 
-    #[Column(type: Types::INTEGER)]
-    private int $status = OrgTypeStatus::Effective->value;
+    #[Column(type: Types::INTEGER, enumType: OrgTypeStatus::class)]
+    private OrgTypeStatus $status = OrgTypeStatus::Effective;
 
     /**
      * @param string $code
      * @param Tenant $tenant
      * @param string $name
-     * @param int $status
+     * @param OrgTypeStatus $status
      */
-    public function __construct(string $code, Tenant $tenant, string $name, int $status)
+    public function __construct(string $code, Tenant $tenant, string $name, OrgTypeStatus $status)
     {
         $this->code = $code;
         $this->tenant = $tenant;

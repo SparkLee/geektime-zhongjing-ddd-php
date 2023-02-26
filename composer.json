@@ -40,6 +40,7 @@
     "scripts": {
         "test": "@php vendor/bin/phpunit",
         "doctrine-schema-create": [
+            "@php artisan doctrine:clear:metadata:cache",
             "@php artisan doctrine:schema:create"
         ],
         "doctrine-schema-update": [

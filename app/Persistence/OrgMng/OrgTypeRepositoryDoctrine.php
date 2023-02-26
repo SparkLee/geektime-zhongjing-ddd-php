@@ -10,8 +10,8 @@ use Doctrine\ORM\EntityRepository;
 class OrgTypeRepositoryDoctrine extends EntityRepository implements OrgTypeRepository
 {
 
-    public function existsByCodeAndStatus(Tenant|int $tenant, string $code, OrgTypeStatus $orgTypeStatus): bool
+    public function existsByCodeAndStatus(Tenant|int $tenant, string $code, OrgTypeStatus|int $orgTypeStatus): bool
     {
-        return $this->count(['tenant' => $tenant, 'code' => $code, 'status' => $orgTypeStatus->value]) > 0;
+        return $this->count(['tenant' => $tenant, 'code' => $code, 'status' => $orgTypeStatus]) > 0;
     }
 }

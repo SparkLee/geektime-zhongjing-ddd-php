@@ -27,12 +27,12 @@ class OrgTypeRepositoryDoctrineTest extends TestCase
     public function test_should_return_true_if_record_exists_with_given_code_and_status()
     {
         $tenant = new Tenant();
-        $orgType = new OrgType('DEVCENT', $tenant, '测试开发中心', OrgTypeStatus::Effective->value);
+        $orgType = new OrgType('DEVCENT', $tenant, '测试开发中心', OrgTypeStatus::Effective);
         EntityManager::persist($tenant);
         EntityManager::persist($orgType);
         EntityManager::flush();
 
-        self::assertTrue($this->repository->existsByCodeAndStatus($tenant, 'DEVCENT', OrgTypeStatus::Effective));
+        self::assertTrue($this->repository->existsByCodeAndStatus($tenant, 'DEVCENT', OrgTypeStatus::Effective->value));
         self::assertTrue($this->repository->existsByCodeAndStatus($tenant->getId(), 'DEVCENT', OrgTypeStatus::Effective));
     }
 }
