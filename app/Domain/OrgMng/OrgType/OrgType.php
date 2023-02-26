@@ -3,6 +3,7 @@
 namespace App\Domain\OrgMng\OrgType;
 
 use App\Domain\TenantMng\Tenant;
+use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
@@ -21,8 +22,23 @@ class OrgType
     #[Column(type: Types::STRING, length: 10)]
     private string $name;
 
-    #[Column(type: Types::INTEGER, enumType: OrgTypeStatus::class)]
-    private OrgTypeStatus $status = OrgTypeStatus::Effective;
+    #[Column] private OrgTypeStatus $status = OrgTypeStatus::Effective;
+
+    // MySQL 和 SQLite 都支持：columnDefinition: "TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
+    #[Column(type: Types::DATETIME_IMMUTABLE,
+        insertable: false,
+        updatable: false,
+        columnDefinition: "TIMESTAMP DEFAULT CURRENT_TIMESTAMP",
+        generated: "ALWAYS")]
+    private DateTimeImmutable $CreatedAt;
+
+    // 只有 MySQL 支持，SQLite 是不支持的！columnDefinition: "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
+    #[Column(type: Types::DATETIME_IMMUTABLE,
+        insertable: false,
+        updatable: false,
+        columnDefinition: "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP",
+        generated: "ALWAYS")]
+    private DateTimeImmutable $lastUpdatedAt;
 
     /**
      * @param string $code
@@ -61,4 +77,31 @@ class OrgType
     {
         return $this->name;
     }
+
+    /**
+     * @param string $name
+     * @return OrgType
+     */
+    public function setName(string $name): OrgType
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->CreatedAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastUpdatedAt()
+    {
+        return $this->lastUpdatedAt;
+    }
+
 }
