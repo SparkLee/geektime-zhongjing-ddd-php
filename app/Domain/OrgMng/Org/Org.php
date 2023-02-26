@@ -2,9 +2,9 @@
 
 namespace App\Domain\OrgMng\Org;
 
+use App\Domain\Common\AuditableEntity;
 use App\Domain\OrgMng\Org\DTO\OrgDomainDTO;
 use Carbon\Carbon;
-use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
@@ -14,6 +14,8 @@ use Doctrine\ORM\Mapping\Id;
 #[Entity]
 class Org
 {
+    use AuditableEntity;
+
     #[Id, GeneratedValue, Column(type: Types::INTEGER)]
     private int|null $id = null;
 
@@ -34,18 +36,6 @@ class Org
 
     #[Column(type: Types::INTEGER)]
     private int $status = OrgStatus::EFFECTIVE;
-
-    #[Column(type: Types::DATETIME_IMMUTABLE)]
-    private DateTimeImmutable $createdAt;
-
-    #[Column(type: Types::INTEGER)]
-    private int $createdBy = 0;
-
-    #[Column(type: Types::DATETIME_IMMUTABLE)]
-    private DateTimeImmutable $lastUpdatedAt;
-
-    #[Column(type: Types::INTEGER)]
-    private int $lastUpdatedBy = 0;
 
     private function __construct()
     {

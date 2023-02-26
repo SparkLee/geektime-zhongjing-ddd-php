@@ -2,8 +2,8 @@
 
 namespace App\Domain\OrgMng\OrgType;
 
+use App\Domain\Common\AuditableEntity;
 use App\Domain\TenantMng\Tenant;
-use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
@@ -13,6 +13,8 @@ use Doctrine\ORM\Mapping\ManyToOne;
 #[Entity]
 class OrgType
 {
+    use AuditableEntity;
+
     #[Id, Column(type: Types::STRING, length: 10)]
     private string $code;
 
@@ -23,12 +25,6 @@ class OrgType
     private string $name;
 
     #[Column] private OrgTypeStatus $status = OrgTypeStatus::Effective;
-
-    #[Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
-    private DateTimeImmutable $CreatedAt;
-
-    #[Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
-    private DateTimeImmutable $lastUpdatedAt;
 
     /**
      * @param string $code
