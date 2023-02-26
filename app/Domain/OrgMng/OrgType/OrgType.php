@@ -24,20 +24,10 @@ class OrgType
 
     #[Column] private OrgTypeStatus $status = OrgTypeStatus::Effective;
 
-    // MySQL 和 SQLite 都支持：columnDefinition: "TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
-    #[Column(type: Types::DATETIME_IMMUTABLE,
-        insertable: false,
-        updatable: false,
-        columnDefinition: "TIMESTAMP DEFAULT CURRENT_TIMESTAMP",
-        generated: "ALWAYS")]
+    #[Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     private DateTimeImmutable $CreatedAt;
 
-    // 只有 MySQL 支持，SQLite 是不支持的！columnDefinition: "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"
-    #[Column(type: Types::DATETIME_IMMUTABLE,
-        insertable: false,
-        updatable: false,
-        columnDefinition: "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP",
-        generated: "ALWAYS")]
+    #[Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     private DateTimeImmutable $lastUpdatedAt;
 
     /**
