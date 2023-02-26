@@ -14,8 +14,8 @@ class Tenant
     #[Id, GeneratedValue, Column(type: Types::INTEGER)]
     private int|null $id = null;
 
-    #[Column(type: Types::INTEGER)]
-    private int $status = TenantStatus::Effective->value;
+    #[Column(type: Types::INTEGER, enumType: TenantStatus::class)]
+    private TenantStatus $status = TenantStatus::Effective;
 
     /**
      * @return int|null
@@ -26,10 +26,10 @@ class Tenant
     }
 
     /**
-     * @param int $status
+     * @param TenantStatus $status
      * @return Tenant
      */
-    public function setStatus(int $status): Tenant
+    public function setStatus(TenantStatus $status): Tenant
     {
         $this->status = $status;
         return $this;

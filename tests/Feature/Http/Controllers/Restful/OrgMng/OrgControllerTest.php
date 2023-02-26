@@ -12,8 +12,7 @@ class OrgControllerTest extends TestCase
     public function test_should_add_org()
     {
         // Given
-        $tenant = (new Tenant())
-            ->setStatus(TenantStatus::Effective->value);
+        $tenant = (new Tenant())->setStatus(TenantStatus::Effective);
         EntityManager::persist($tenant);
         EntityManager::flush();
 
