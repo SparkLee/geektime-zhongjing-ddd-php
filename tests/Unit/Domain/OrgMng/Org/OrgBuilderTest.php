@@ -71,6 +71,7 @@ class OrgBuilderTest extends TestCase
         $this->expectExceptionMessage('[test]不是有效的组织类别代码！');
 
         $orgTypeRepositoryStub = $this->createStub(OrgTypeRepository::class);
+        self::assertInstanceOf(OrgTypeRepository::class, $orgTypeRepositoryStub);
         $orgTypeRepositoryStub->method('existsByCodeAndStatus')->willReturn(false);
         app()->instance(OrgTypeRepository::class, $orgTypeRepositoryStub);
 
@@ -103,6 +104,7 @@ class OrgBuilderTest extends TestCase
         $tenantRepositoryStub = $this->createStub(TenantRepository::class);
         $tenantRepositoryStub->method('existsByIdAndStatus')->willReturn(false);
         app()->instance(TenantRepository::class, $tenantRepositoryStub);
+        self::assertInstanceOf(TenantRepository::class, $tenantRepositoryStub);
 
         $this->build();
     }
