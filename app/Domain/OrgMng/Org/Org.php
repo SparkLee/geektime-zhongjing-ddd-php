@@ -65,4 +65,12 @@ class Org extends AuditableEntity
     {
         return $this->name;
     }
+
+    /**
+     * @return string
+     */
+    public function getOrgTypeCode(): string
+    {
+        return $this->orgTypeCode;
+    }
 }

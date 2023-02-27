@@ -9,6 +9,7 @@ class OrgResponse
     private int $id;
     private int $tenantId;
     private string $name;
+    private string $orgTypeCode;
 
     public static function fromOrg(Org $org): static
     {
@@ -16,6 +17,7 @@ class OrgResponse
         $response->id = $org->getId();
         $response->tenantId = $org->getTenantId();
         $response->name = $org->getName();
+        $response->orgTypeCode = $org->getOrgTypeCode();
         return $response;
     }
 
@@ -24,7 +26,8 @@ class OrgResponse
         return [
             'id' => $this->id,
             'tenantId' => $this->tenantId,
-            'name'=>$this->name,
+            'name' => $this->name,
+            'orgTypeCode' => $this->orgTypeCode,
         ];
     }
 }

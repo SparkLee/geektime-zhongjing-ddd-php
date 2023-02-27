@@ -28,7 +28,7 @@ class CreateOrgRequest
         $dto = new static;
         $dto->tenantId = $request->integer('tenantId');
         $dto->superiorId = $request->integer('superiorId');
-        $dto->orgTypeCode = $request->integer('orgTypeCode');
+        $dto->orgTypeCode = $request->str('orgTypeCode');
         $dto->name = $request->str('name');
         return $dto;
     }

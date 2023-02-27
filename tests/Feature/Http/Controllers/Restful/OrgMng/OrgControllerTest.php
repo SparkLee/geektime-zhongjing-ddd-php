@@ -2,6 +2,8 @@
 
 namespace Tests\Feature\Http\Controllers\Restful\OrgMng;
 
+use App\Domain\OrgMng\OrgType\OrgType;
+use App\Domain\OrgMng\OrgType\OrgTypeStatus;
 use App\Domain\TenantMng\Tenant;
 use App\Domain\TenantMng\TenantStatus;
 use LaravelDoctrine\ORM\Facades\EntityManager;
@@ -13,13 +15,16 @@ class OrgControllerTest extends TestCase
     {
         // Given
         $tenant = (new Tenant())->setStatus(TenantStatus::Effective);
+        $orgType = new OrgType('DEVCENT', $tenant, '测试开发中心', OrgTypeStatus::Effective);
         EntityManager::persist($tenant);
+        EntityManager::persist($orgType);
         EntityManager::flush();
 
         // When
         $response = $this->post('/api/organizations', [
             'tenantId' => $tenant->getId(),
             'name' => 'foo',
+            'orgTypeCode' => 'DEVCENT',
         ]);
 
         // Then
@@ -28,6 +33,7 @@ class OrgControllerTest extends TestCase
         $response->assertJson([
             'tenantId' => $tenant->getId(),
             'name' => 'foo',
+            'orgTypeCode' => 'DEVCENT',
         ]);
     }
 

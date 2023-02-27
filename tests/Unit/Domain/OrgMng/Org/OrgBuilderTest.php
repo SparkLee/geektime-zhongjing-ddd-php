@@ -5,6 +5,9 @@ namespace Tests\Unit\Domain\OrgMng\Org;
 use App\Domain\Common\Exceptions\BusinessException;
 use App\Domain\OrgMng\Org\DTO\OrgDomainDTO;
 use App\Domain\OrgMng\Org\OrgBuilder;
+use App\Domain\OrgMng\OrgType\OrgTypeRepository;
+use App\Domain\OrgMng\OrgType\OrgTypeStatus;
+use App\Domain\TenantMng\Tenant;
 use App\Domain\TenantMng\TenantRepository;
 use App\Domain\TenantMng\TenantStatus;
 use PHPUnit\Framework\TestCase;
@@ -16,16 +19,17 @@ class OrgBuilderTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->setUpTenantRepositoryStub();
+        $this->setUpRepositoryStubs();
         $this->setUpValidOrgDomainDTO();
     }
 
     /**
      * @return void
      */
-    public function setUpTenantRepositoryStub(): void
+    public function setUpRepositoryStubs(): void
     {
         app()->instance(TenantRepository::class, new TenantRepositoryStub());
+        app()->instance(OrgTypeRepository::class, new OrgTypeRepositoryStub());
     }
 
     public function setUpValidOrgDomainDTO(): void
@@ -43,6 +47,35 @@ class OrgBuilderTest extends TestCase
         $this->expectExceptionMessage('组织名不能为空');
 
         $this->validOrgDomainDTO->name('');
+        $this->build();
+    }
+
+    public function test_org_type_should_not_be_empty()
+    {
+        $this->expectException(BusinessException::class);
+        $this->expectExceptionMessage('组织类别不能为空！');
+
+        $this->validOrgDomainDTO->orgTypeCode('');
+        $this->build();
+    }
+
+    public function test_org_type_should_be_valid()
+    {
+        $this->expectException(BusinessException::class);
+        $this->expectExceptionMessage('[test]不是有效的组织类别代码！');
+
+        app()->instance(OrgTypeRepository::class, (new OrgTypeRepositoryStub())
+            ->setExistsByCodeAndStatus(false));
+
+        $this->build();
+    }
+
+    public function test_org_type_should_not_create_enterprise_alone()
+    {
+        $this->expectException(BusinessException::class);
+        $this->expectExceptionMessage('企业是在创建租户的时候创建好的，因此不能单独创建企业!');
+
+        $this->validOrgDomainDTO->orgTypeCode('ENTP');
         $this->build();
     }
 
@@ -93,5 +126,20 @@ class TenantRepositoryStub implements TenantRepository
         $this->existsByIdAndStatus = $existsByIdAndStatus;
         return $this;
     }
+}
 
+class OrgTypeRepositoryStub implements OrgTypeRepository
+{
+    private bool $existsByCodeAndStatus = true;
+
+    public function existsByCodeAndStatus(Tenant|int $tenant, string $code, int|OrgTypeStatus $orgTypeStatus): bool
+    {
+        return $this->existsByCodeAndStatus;
+    }
+
+    public function setExistsByCodeAndStatus(bool $existsByCodeAndStatus): self
+    {
+        $this->existsByCodeAndStatus = $existsByCodeAndStatus;
+        return $this;
+    }
 }
