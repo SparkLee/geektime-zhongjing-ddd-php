@@ -10,10 +10,8 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 
 #[Entity]
-class EffortRecord
+class EffortRecord extends AuditableEntity
 {
-    use AuditableEntity;
-
     #[Id, GeneratedValue, Column(type: Types::INTEGER)]
     private int|null $id = null;
 }

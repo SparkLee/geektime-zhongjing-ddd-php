@@ -12,10 +12,8 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 
 #[Entity]
-class Org
+class Org extends AuditableEntity
 {
-    use AuditableEntity;
-
     #[Id, GeneratedValue, Column(type: Types::INTEGER)]
     private int|null $id = null;
 

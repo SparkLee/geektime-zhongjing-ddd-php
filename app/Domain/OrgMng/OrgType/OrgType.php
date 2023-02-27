@@ -11,10 +11,8 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\ManyToOne;
 
 #[Entity]
-class OrgType
+class OrgType extends AuditableEntity
 {
-    use AuditableEntity;
-
     #[Id, Column(type: Types::STRING, length: 10)]
     private string $code;
 
@@ -73,21 +71,4 @@ class OrgType
         $this->name = $name;
         return $this;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getCreatedAt()
-    {
-        return $this->CreatedAt;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLastUpdatedAt()
-    {
-        return $this->lastUpdatedAt;
-    }
-
 }
