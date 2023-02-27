@@ -6,10 +6,7 @@ use App\Domain\Common\Exceptions\BusinessException;
 use App\Domain\OrgMng\Org\DTO\OrgDomainDTO;
 use App\Domain\OrgMng\Org\OrgBuilder;
 use App\Domain\OrgMng\OrgType\OrgTypeRepository;
-use App\Domain\OrgMng\OrgType\OrgTypeStatus;
-use App\Domain\TenantMng\Tenant;
 use App\Domain\TenantMng\TenantRepository;
-use App\Domain\TenantMng\TenantStatus;
 use PHPUnit\Framework\TestCase;
 
 class OrgBuilderTest extends TestCase
@@ -25,11 +22,20 @@ class OrgBuilderTest extends TestCase
 
     /**
      * @return void
+     *
+     * 注意：$this->createStub() 的返回值要先赋值给一个局部变量，比如 $stub, 然后再使用 $stub->method()->willReturn()，否则返回的类型将不是预期的类型，会报类似这样的错误：
+     * "Argument #1 ($tenantRepository) must be of type App\Domain\TenantMng\TenantRepository, PHPUnit\Framework\MockObject\Builder\InvocationMocker given"
+     * @see https://github.com/sebastianbergmann/phpunit/issues/3706#issuecomment-513094256
      */
     public function setUpRepositoryStubs(): void
     {
-        app()->instance(TenantRepository::class, new TenantRepositoryStub());
-        app()->instance(OrgTypeRepository::class, new OrgTypeRepositoryStub());
+        $tenantRepositoryStub = $this->createStub(TenantRepository::class);
+        $tenantRepositoryStub->method('existsByIdAndStatus')->willReturn(true);
+        app()->instance(TenantRepository::class, $tenantRepositoryStub);
+
+        $orgTypeRepositoryStub = $this->createStub(OrgTypeRepository::class);
+        $orgTypeRepositoryStub->method('existsByCodeAndStatus')->willReturn(true);
+        app()->instance(OrgTypeRepository::class, $orgTypeRepositoryStub);
     }
 
     public function setUpValidOrgDomainDTO(): void
@@ -64,8 +70,9 @@ class OrgBuilderTest extends TestCase
         $this->expectException(BusinessException::class);
         $this->expectExceptionMessage('[test]不是有效的组织类别代码！');
 
-        app()->instance(OrgTypeRepository::class, (new OrgTypeRepositoryStub())
-            ->setExistsByCodeAndStatus(false));
+        $orgTypeRepositoryStub = $this->createStub(OrgTypeRepository::class);
+        $orgTypeRepositoryStub->method('existsByCodeAndStatus')->willReturn(false);
+        app()->instance(OrgTypeRepository::class, $orgTypeRepositoryStub);
 
         $this->build();
     }
@@ -93,8 +100,9 @@ class OrgBuilderTest extends TestCase
         $this->expectException(BusinessException::class);
         $this->expectExceptionMessage('id为[1]的租户不是有效租户！');
 
-        app()->instance(TenantRepository::class, (new TenantRepositoryStub())
-            ->setExistsByIdAndStatus(false));
+        $tenantRepositoryStub = $this->createStub(TenantRepository::class);
+        $tenantRepositoryStub->method('existsByIdAndStatus')->willReturn(false);
+        app()->instance(TenantRepository::class, $tenantRepositoryStub);
 
         $this->build();
     }
@@ -109,37 +117,5 @@ class OrgBuilderTest extends TestCase
         $this->makeOrgBuilder()
             ->orgDomainDTO($this->validOrgDomainDTO)
             ->build();
-    }
-}
-
-class TenantRepositoryStub implements TenantRepository
-{
-    private bool $existsByIdAndStatus = true;
-
-    public function existsByIdAndStatus(int $tenantId, TenantStatus $tenantStatus): bool
-    {
-        return $this->existsByIdAndStatus;
-    }
-
-    public function setExistsByIdAndStatus(bool $existsByIdAndStatus): self
-    {
-        $this->existsByIdAndStatus = $existsByIdAndStatus;
-        return $this;
-    }
-}
-
-class OrgTypeRepositoryStub implements OrgTypeRepository
-{
-    private bool $existsByCodeAndStatus = true;
-
-    public function existsByCodeAndStatus(Tenant|int $tenant, string $code, int|OrgTypeStatus $orgTypeStatus): bool
-    {
-        return $this->existsByCodeAndStatus;
-    }
-
-    public function setExistsByCodeAndStatus(bool $existsByCodeAndStatus): self
-    {
-        $this->existsByCodeAndStatus = $existsByCodeAndStatus;
-        return $this;
     }
 }
