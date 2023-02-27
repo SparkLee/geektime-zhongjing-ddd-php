@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\OrgMng\Org\Validators;
+namespace App\Domain\Common\Validators;
 
 use App\Domain\Common\Exceptions\BusinessException;
 use App\Domain\TenantMng\TenantRepository;
