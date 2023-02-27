@@ -3,8 +3,8 @@
 namespace App\Domain\OrgMng\Org;
 
 use App\Domain\OrgMng\Org\DTO\OrgDomainDTO;
-use App\Domain\OrgMng\Org\Validator\CommonValidator;
-use App\Domain\OrgMng\Org\Validator\OrgNameValidator;
+use App\Domain\OrgMng\Org\Validators\CommonValidator;
+use App\Domain\OrgMng\Org\Validators\OrgNameValidator;
 
 class OrgBuilder
 {
