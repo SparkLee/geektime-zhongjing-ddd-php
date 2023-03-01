@@ -22,18 +22,18 @@ class OrgControllerTest extends TestCase
 
         // When
         $response = $this->post('/api/organizations', [
-            'tenantId' => $tenant->getId(),
+            'tenant' => $tenant->getId(),
             'name' => '上海金融开发中心',
-            'orgTypeCode' => 'DEVCENT',
+            'orgType' => 'DEVCENT',
         ]);
 
         // Then
         $response->assertStatus(200);
-        $response->assertJsonStructure(['id', 'tenantId']);
+        $response->assertJsonStructure(['id']);
         $response->assertJson([
-            'tenantId' => $tenant->getId(),
+            'tenant' => $tenant->getId(),
             'name' => '上海金融开发中心',
-            'orgTypeCode' => 'DEVCENT',
+            'orgType' => 'DEVCENT',
         ]);
     }
 

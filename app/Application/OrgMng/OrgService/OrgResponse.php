@@ -25,9 +25,9 @@ class OrgResponse
     {
         return [
             'id' => $this->id,
-            'tenantId' => $this->tenantId,
+            'tenant' => $this->tenantId,
             'name' => $this->name,
-            'orgTypeCode' => $this->orgTypeCode,
+            'orgType' => $this->orgTypeCode,
         ];
     }
 }

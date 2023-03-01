@@ -26,9 +26,9 @@ class CreateOrgRequest
     public static function fromRequest(Request $request): static
     {
         $dto = new static;
-        $dto->tenantId = $request->integer('tenantId');
-        $dto->superiorId = $request->integer('superiorId');
-        $dto->orgTypeCode = $request->str('orgTypeCode');
+        $dto->tenantId = $request->integer('tenant');
+        $dto->superiorId = $request->integer('superior');
+        $dto->orgTypeCode = $request->str('orgType');
         $dto->name = $request->str('name');
         return $dto;
     }
