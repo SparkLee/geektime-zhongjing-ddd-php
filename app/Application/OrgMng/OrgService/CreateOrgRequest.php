@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 class CreateOrgRequest
 {
     private int $id;
-    private int $tenantId;
+    private int $tenant;
     private int $superiorId;
-    private string $orgTypeCode;
+    private string $orgType;
     private int $leaderId;
     private string $name;
     private string $status;
@@ -26,9 +26,9 @@ class CreateOrgRequest
     public static function fromRequest(Request $request): static
     {
         $dto = new static;
-        $dto->tenantId = $request->integer('tenant');
+        $dto->tenant = $request->integer('tenant');
         $dto->superiorId = $request->integer('superior');
-        $dto->orgTypeCode = $request->str('orgType');
+        $dto->orgType = $request->str('orgType');
         $dto->name = $request->str('name');
         return $dto;
     }
@@ -36,9 +36,9 @@ class CreateOrgRequest
     /**
      * @return int
      */
-    public function getTenantId(): int
+    public function getTenant(): int
     {
-        return $this->tenantId;
+        return $this->tenant;
     }
 
     /**
@@ -52,9 +52,9 @@ class CreateOrgRequest
     /**
      * @return string
      */
-    public function getOrgTypeCode(): string
+    public function getOrgType(): string
     {
-        return $this->orgTypeCode;
+        return $this->orgType;
     }
 
     /**

@@ -28,9 +28,9 @@ class OrgService
     public function buildOrg(CreateOrgRequest $request): Org
     {
         $orgDomainDTO = (new OrgDomainDTO())
-            ->tenantId($request->getTenantId())
+            ->tenantId($request->getTenant())
             ->superiorId($request->getSuperiorId())
-            ->orgTypeCode($request->getOrgTypeCode())
+            ->orgTypeCode($request->getOrgType())
             ->name($request->getName());
 
         return $this->orgBuilder

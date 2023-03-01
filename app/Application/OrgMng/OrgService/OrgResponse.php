@@ -7,17 +7,17 @@ use App\Domain\OrgMng\Org\Org;
 class OrgResponse
 {
     private int $id;
-    private int $tenantId;
+    private int $tenant;
     private string $name;
-    private string $orgTypeCode;
+    private string $orgType;
 
     public static function fromOrg(Org $org): static
     {
         $response = new static();
         $response->id = $org->getId();
-        $response->tenantId = $org->getTenantId();
+        $response->tenant = $org->getTenantId();
         $response->name = $org->getName();
-        $response->orgTypeCode = $org->getOrgTypeCode();
+        $response->orgType = $org->getOrgTypeCode();
         return $response;
     }
 
@@ -25,9 +25,9 @@ class OrgResponse
     {
         return [
             'id' => $this->id,
-            'tenant' => $this->tenantId,
+            'tenant' => $this->tenant,
             'name' => $this->name,
-            'orgType' => $this->orgTypeCode,
+            'orgType' => $this->orgType,
         ];
     }
 }
