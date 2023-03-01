@@ -29,7 +29,7 @@ class OrgService
     {
         $orgDomainDTO = (new OrgDomainDTO())
             ->tenantId($request->getTenant())
-            ->superiorId($request->getSuperiorId())
+            ->superiorId($request->getSuperior())
             ->orgTypeCode($request->getOrgType())
             ->name($request->getName());
 

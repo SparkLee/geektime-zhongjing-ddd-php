@@ -8,7 +8,7 @@ class CreateOrgRequest
 {
     private int $id;
     private int $tenant;
-    private int $superiorId;
+    private int $superior;
     private string $orgType;
     private int $leaderId;
     private string $name;
@@ -27,7 +27,7 @@ class CreateOrgRequest
     {
         $dto = new static;
         $dto->tenant = $request->integer('tenant');
-        $dto->superiorId = $request->integer('superior');
+        $dto->superior = $request->integer('superior');
         $dto->orgType = $request->str('orgType');
         $dto->name = $request->str('name');
         return $dto;
@@ -44,9 +44,9 @@ class CreateOrgRequest
     /**
      * @return int
      */
-    public function getSuperiorId(): int
+    public function getSuperior(): int
     {
-        return $this->superiorId;
+        return $this->superior;
     }
 
     /**
