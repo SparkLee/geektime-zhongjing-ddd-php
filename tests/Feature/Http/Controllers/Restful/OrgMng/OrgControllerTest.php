@@ -15,7 +15,7 @@ class OrgControllerTest extends TestCase
     {
         // Given
         $tenant = (new Tenant())->setStatus(TenantStatus::Effective);
-        $orgType = new OrgType('DEVCENT', $tenant, '测试开发中心', OrgTypeStatus::Effective);
+        $orgType = new OrgType('DEVCENT', $tenant, '开发中心', OrgTypeStatus::Effective);
         EntityManager::persist($tenant);
         EntityManager::persist($orgType);
         EntityManager::flush();
@@ -23,7 +23,7 @@ class OrgControllerTest extends TestCase
         // When
         $response = $this->post('/api/organizations', [
             'tenantId' => $tenant->getId(),
-            'name' => 'foo',
+            'name' => '上海金融开发中心',
             'orgTypeCode' => 'DEVCENT',
         ]);
 
@@ -32,7 +32,7 @@ class OrgControllerTest extends TestCase
         $response->assertJsonStructure(['id', 'tenantId']);
         $response->assertJson([
             'tenantId' => $tenant->getId(),
-            'name' => 'foo',
+            'name' => '上海金融开发中心',
             'orgTypeCode' => 'DEVCENT',
         ]);
     }
