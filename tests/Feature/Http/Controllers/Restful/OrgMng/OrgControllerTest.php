@@ -15,7 +15,7 @@ class OrgControllerTest extends TestCase
     {
         // Given
         $testDataFactory = TestDataFactory::make();
-        $tenant = $testDataFactory->tenant;
+        $tenant = $testDataFactory->getTenant();
 
         // When
         $response = $this->post('/api/organizations', [
@@ -47,8 +47,8 @@ class OrgControllerTest extends TestCase
 
 class TestDataFactory
 {
-    public Tenant $tenant;
-    public OrgType $orgType;
+    private Tenant $tenant;
+    private OrgType $orgType;
 
     public static function make(): static
     {
@@ -74,5 +74,15 @@ class TestDataFactory
         EntityManager::persist($this->tenant);
         EntityManager::persist($this->orgType);
         EntityManager::flush();
+    }
+
+    public function getTenant(): Tenant
+    {
+        return $this->tenant;
+    }
+
+    public function getOrgType(): OrgType
+    {
+        return $this->orgType;
     }
 }
