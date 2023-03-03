@@ -10,14 +10,16 @@ class OrgResponse
     private int $tenant;
     private string $name;
     private string $orgType;
+    private int $superior;
 
     public static function fromOrg(Org $org): static
     {
         $response = new static();
         $response->id = $org->getId();
-        $response->tenant = $org->getTenantId();
+        $response->tenant = $org->getTenant()->getId();
         $response->name = $org->getName();
         $response->orgType = $org->getOrgTypeCode();
+        $response->superior = $org->getSuperiorId();
         return $response;
     }
 
@@ -28,6 +30,7 @@ class OrgResponse
             'tenant' => $this->tenant,
             'name' => $this->name,
             'orgType' => $this->orgType,
+            'superior' => $this->superior,
         ];
     }
 }

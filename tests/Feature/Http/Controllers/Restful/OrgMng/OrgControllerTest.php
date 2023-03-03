@@ -2,6 +2,8 @@
 
 namespace Tests\Feature\Http\Controllers\Restful\OrgMng;
 
+use App\Domain\OrgMng\Org\DTO\OrgDomainDTO;
+use App\Domain\OrgMng\Org\Org;
 use App\Domain\OrgMng\OrgType\OrgType;
 use App\Domain\OrgMng\OrgType\OrgTypeStatus;
 use App\Domain\TenantMng\Tenant;
@@ -16,13 +18,14 @@ class OrgControllerTest extends TestCase
         // Given
         $testDataFactory = TestDataFactory::make();
         $tenant = $testDataFactory->getTenant();
+        $superiorOrg = $testDataFactory->getSuperiorOrg();
 
         // When
         $response = $this->post('/api/organizations', [
             'tenant' => $tenant->getId(),
             'name' => '上海金融开发中心',
             'orgType' => 'DEVCENT',
-            'superior' => 1,
+            'superior' => $superiorOrg->getId(),
         ]);
 
         // Then
@@ -32,6 +35,7 @@ class OrgControllerTest extends TestCase
             'tenant' => $tenant->getId(),
             'name' => '上海金融开发中心',
             'orgType' => 'DEVCENT',
+            'superior' => $superiorOrg->getId(),
         ]);
     }
 
@@ -49,12 +53,14 @@ class TestDataFactory
 {
     private Tenant $tenant;
     private OrgType $orgType;
+    private Org $superiorOrg;
 
     public static function make(): static
     {
         $factory = new static();
         $factory->makeTenant();
         $factory->makeOrgType();
+        $factory->makeSuperiorOrg();
         $factory->persist();
         return $factory;
     }
@@ -69,10 +75,19 @@ class TestDataFactory
         $this->orgType = new OrgType('DEVCENT', $this->tenant, '开发中心', OrgTypeStatus::Effective);
     }
 
+    public function makeSuperiorOrg(): void
+    {
+        $this->superiorOrg = Org::fromOrgDomainDTO((new OrgDomainDTO())
+            ->tenant($this->tenant)
+            ->name("中国卷卷通元宇宙集团")
+            ->orgTypeCode("ENTP"));
+    }
+
     public function persist(): void
     {
         EntityManager::persist($this->tenant);
         EntityManager::persist($this->orgType);
+        EntityManager::persist($this->superiorOrg);
         EntityManager::flush();
     }
 
@@ -84,5 +99,10 @@ class TestDataFactory
     public function getOrgType(): OrgType
     {
         return $this->orgType;
+    }
+
+    public function getSuperiorOrg(): Org
+    {
+        return $this->superiorOrg;
     }
 }

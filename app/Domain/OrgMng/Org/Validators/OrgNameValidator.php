@@ -3,13 +3,14 @@
 namespace App\Domain\OrgMng\Org\Validators;
 
 use App\Domain\Common\Exceptions\BusinessException;
+use App\Domain\TenantMng\Tenant;
 
 class OrgNameValidator
 {
-    public function verify(int $tenantId, int $superiorId, string $name): void
+    public function verify(Tenant $tenant, int $superiorId, string $name): void
     {
         $this->nameShouldNotBeEmpty($name);
-        $this->nameShouldNotBeDuplicatedInTheSameSuperior($tenantId, $superiorId, $name);
+        $this->nameShouldNotBeDuplicatedInTheSameSuperior($tenant, $superiorId, $name);
     }
 
     private function nameShouldNotBeEmpty(string $name): void
@@ -19,7 +20,7 @@ class OrgNameValidator
         }
     }
 
-    private function nameShouldNotBeDuplicatedInTheSameSuperior(int $tenantId, int $superiorId, string $name): void
+    private function nameShouldNotBeDuplicatedInTheSameSuperior(Tenant $tenant, int $superiorId, string $name): void
     {
 
     }

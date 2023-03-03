@@ -2,19 +2,18 @@
 
 namespace App\Domain\OrgMng\Org\DTO;
 
+use App\Domain\TenantMng\Tenant;
+
 class OrgDomainDTO
 {
-    private int $tenantId;
-    private int $superiorId;
+    private ?Tenant $tenant = null;
+    private int $superiorId = 0;
     private string $orgTypeCode;
     private string $name;
 
-    /**
-     * @return int
-     */
-    public function getTenantId(): int
+    public function getTenant(): ?Tenant
     {
-        return $this->tenantId;
+        return $this->tenant;
     }
 
     /**
@@ -41,13 +40,9 @@ class OrgDomainDTO
         return $this->name;
     }
 
-    /**
-     * @param int $tenantId
-     * @return self
-     */
-    public function tenantId(int $tenantId): self
+    public function tenant(?Tenant $tenant): self
     {
-        $this->tenantId = $tenantId;
+        $this->tenant = $tenant;
         return $this;
     }
 

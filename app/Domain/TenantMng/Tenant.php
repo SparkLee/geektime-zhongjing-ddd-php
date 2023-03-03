@@ -18,21 +18,24 @@ class Tenant extends AuditableEntity
     #[Column(type: Types::INTEGER, enumType: TenantStatus::class)]
     private TenantStatus $status = TenantStatus::Effective;
 
-    /**
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @param TenantStatus $status
-     * @return Tenant
-     */
     public function setStatus(TenantStatus $status): Tenant
     {
         $this->status = $status;
         return $this;
+    }
+
+    public function isEffective(): bool
+    {
+        return $this->status === TenantStatus::Effective;
+    }
+
+    public function isIneffective(): bool
+    {
+        return $this->status === TenantStatus::Ineffective;
     }
 }

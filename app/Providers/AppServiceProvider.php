@@ -27,11 +27,11 @@ class AppServiceProvider extends ServiceProvider
 
     private function registerRepositories(): void
     {
-        $this->app->bind(OrgRepository::class, function ($app) {
-            return new OrgRepositoryDoctrine($app['em'], $app['em']->getClassMetaData(Org::class));
-        });
         $this->app->bind(TenantRepository::class, function ($app) {
             return new TenantRepositoryDoctrine($app['em'], $app['em']->getClassMetaData(Tenant::class));
+        });
+        $this->app->bind(OrgRepository::class, function ($app) {
+            return new OrgRepositoryDoctrine($app['em'], $app['em']->getClassMetaData(Org::class));
         });
         $this->app->bind(OrgTypeRepository::class, function ($app) {
             return new OrgTypeRepositoryDoctrine($app['em'], $app['em']->getClassMetaData(OrgType::class));
