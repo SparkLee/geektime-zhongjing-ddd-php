@@ -2,8 +2,6 @@
 
 namespace App\Application\OrgMng\OrgService;
 
-use Illuminate\Http\Request;
-
 class CreateOrgRequest
 {
     private int $id;
@@ -17,21 +15,6 @@ class CreateOrgRequest
     private int $createdBy;
     private string $lastUpdatedAt;
     private int $lastUpdatedBy;
-
-    private function __construct()
-    {
-
-    }
-
-    public static function fromRequest(Request $request): static
-    {
-        $dto = new static;
-        $dto->tenant = $request->integer('tenant');
-        $dto->superior = $request->integer('superior');
-        $dto->orgType = $request->str('orgType');
-        $dto->name = $request->str('name');
-        return $dto;
-    }
 
     /**
      * @return int

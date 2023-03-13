@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Restful\OrgMng;
 use App\Application\OrgMng\OrgService\CreateOrgRequest;
 use App\Application\OrgMng\OrgService\OrgService;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\RequestMapper;
 use App\Http\Controllers\Restful\OrgMng\Concerns\validatesOrgRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -25,7 +26,7 @@ class OrgController extends Controller
     {
         try {
             $this->validateAddingOrg($request);
-            $createOrgRequest = CreateOrgRequest::fromRequest($request);
+            $createOrgRequest = RequestMapper::map($request, CreateOrgRequest::class);
             $orgResponse = $this->orgService->addOrg($createOrgRequest, 1);
             return response()->json($orgResponse->toArray());
         } catch (Throwable $e) {

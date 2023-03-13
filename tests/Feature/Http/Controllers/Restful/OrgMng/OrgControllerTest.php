@@ -28,6 +28,7 @@ class OrgControllerTest extends TestCase
             'superior' => $superiorOrg->getId(),
             'name' => '上海金融开发中心',
         ]);
+        var_dump($response->getContent());
 
         // Then
         $response->assertStatus(200);
