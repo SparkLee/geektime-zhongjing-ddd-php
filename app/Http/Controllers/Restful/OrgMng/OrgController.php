@@ -5,14 +5,14 @@ namespace App\Http\Controllers\Restful\OrgMng;
 use App\Application\OrgMng\OrgService\CreateOrgRequest;
 use App\Application\OrgMng\OrgService\OrgService;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Restful\OrgMng\Validators\OrgValidator;
+use App\Http\Controllers\Restful\OrgMng\Concerns\validatesOrgRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Throwable;
 
 class OrgController extends Controller
 {
-    use OrgValidator;
+    use validatesOrgRequests;
 
     private OrgService $orgService;
 

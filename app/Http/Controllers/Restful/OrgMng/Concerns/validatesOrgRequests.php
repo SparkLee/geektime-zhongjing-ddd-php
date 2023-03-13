@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Restful\OrgMng\Validators;
+namespace App\Http\Controllers\Restful\OrgMng\Concerns;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
-trait OrgValidator
+trait validatesOrgRequests
 {
     /**
      * @throws ValidationException
