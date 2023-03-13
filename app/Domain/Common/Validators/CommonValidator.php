@@ -16,7 +16,7 @@ class CommonValidator
     private function tenantShouldNotBeEmpty(?Tenant $tenant): void
     {
         if (is_null($tenant)) {
-            throw new BusinessException("租户不能为空");
+            throw new BusinessException("租户不存在");
         }
     }
 

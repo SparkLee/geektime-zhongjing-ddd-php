@@ -87,7 +87,7 @@ class OrgBuilderTest extends TestCase
     public function test_tenant_should_not_be_empty()
     {
         $this->expectException(BusinessException::class);
-        $this->expectExceptionMessage('租户不能为空');
+        $this->expectExceptionMessage('租户不存在');
 
         $this->factory->getValidOrgDomainDTO()->tenant(null);
         $this->build();

@@ -18,14 +18,15 @@ class OrgControllerTest extends TestCase
         // Given
         $testDataFactory = TestDataFactory::make();
         $tenant = $testDataFactory->getTenant();
+        $orgType = $testDataFactory->getOrgType();
         $superiorOrg = $testDataFactory->getSuperiorOrg();
 
         // When
         $response = $this->post('/api/organizations', [
             'tenant' => $tenant->getId(),
-            'name' => '上海金融开发中心',
-            'orgType' => 'DEVCENT',
+            'orgType' => $orgType->getCode(),
             'superior' => $superiorOrg->getId(),
+            'name' => '上海金融开发中心',
         ]);
 
         // Then
