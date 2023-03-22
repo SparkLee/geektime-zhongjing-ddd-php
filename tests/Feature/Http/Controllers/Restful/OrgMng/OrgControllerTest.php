@@ -29,7 +29,7 @@ class OrgControllerTest extends TestCase
             'name' => '上海金融开发中心',
         ]);
 
-        // Then
+        // Then assert response
         $response->assertStatus(200);
         $response->assertJsonStructure(['id']);
         $response->assertJson([
@@ -38,6 +38,14 @@ class OrgControllerTest extends TestCase
             'orgType' => 'DEVCENT',
             'superior' => $superiorOrg->getId(),
         ]);
+        // And Then assert database
+        $repository = EntityManager::getRepository(Org::class);
+        /** @var Org $persistedOrg */
+        $persistedOrg = $repository->find($response['id']);
+        self::assertThat($persistedOrg->getTenant()->getId(), self::equalTo($tenant->getId()));
+        self::assertSame('上海金融开发中心', $persistedOrg->getName());
+        self::assertSame('DEVCENT', $persistedOrg->getOrgTypeCode());
+        self::assertSame($superiorOrg->getId(), $persistedOrg->getSuperiorId());
     }
 
     public function test_should_update_org_basic_info()
