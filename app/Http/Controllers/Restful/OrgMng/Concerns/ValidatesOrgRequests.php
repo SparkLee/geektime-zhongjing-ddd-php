@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Restful\OrgMng\Concerns;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
-trait validatesOrgRequests
+trait ValidatesOrgRequests
 {
     /**
      * @throws ValidationException

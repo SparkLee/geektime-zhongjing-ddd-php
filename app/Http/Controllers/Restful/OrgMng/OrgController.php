@@ -6,14 +6,14 @@ use App\Application\OrgMng\OrgService\CreateOrgRequest;
 use App\Application\OrgMng\OrgService\OrgService;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\RequestMapper;
-use App\Http\Controllers\Restful\OrgMng\Concerns\validatesOrgRequests;
+use App\Http\Controllers\Restful\OrgMng\Concerns\ValidatesOrgRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Throwable;
 
 class OrgController extends Controller
 {
-    use validatesOrgRequests;
+    use ValidatesOrgRequests;
 
     private OrgService $orgService;
 
